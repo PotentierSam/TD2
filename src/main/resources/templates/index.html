@@ -10,7 +10,6 @@
   </div>
 </div>
 <div class="ui segment">
-	<i class="big icon envelope"></i>
 	<a href="/orga/new" class="ui teal button">
 	<i class="ui plus icon"></i> Ajouter une organisation...
 </a>
@@ -24,7 +23,7 @@
     <th>Name</th>
     <th>Domain</th>
     <th>Aliases</th>
-    <th>Delete</th>
+    <th></th>
   </tr></thead>
   <tbody>
   	{{#orgas}}
@@ -35,6 +34,8 @@
       <td data-label="Aliases">{{#aliases}}{{.}}{{/aliases}}</td>
       <td><a href="/orgas/delete/{{id}}"  class="circular ui red icon button">
   		<i class="icon recycle"></i>
+	</a><a href="/orgas/edit/{{id}}"  class="circular ui icon button">
+  		<i class="icon edit"></i>
 	</a></td>
     </tr>
     {{/orgas}}

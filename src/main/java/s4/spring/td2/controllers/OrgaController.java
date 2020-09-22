@@ -61,4 +61,11 @@ public class OrgaController {
 		orgaRepo.delete(opt.get());
 		return new RedirectView("/orgas");
 	}
+	
+	@RequestMapping("orgas/edit/{id}")
+	public  String editOrga(@PathVariable int id,ModelMap model) {
+		Optional<Organization> opt=orgaRepo.findById(id); 
+		model.put("orga", opt.get());
+		return "editorga";
+	}
 }
