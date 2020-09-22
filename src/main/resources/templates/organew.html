@@ -1,0 +1,31 @@
+{{> header}}
+<br>
+<div class="ui icon message">
+  <i class="envelope icon"></i>
+  <div class="content">
+    <div class="header">
+      Ajout d'une organisation en cours
+    </div>
+    <p>Les slam sont les meilleurs</p>
+  </div>
+</div>
+<div class="ui segment">
+<form method="post" action="/orga/new">
+<div class="ui input">
+  <input type="text" placeholder="Name" name="name" required>
+</div>
+<div class="ui input">
+  <input type="text" placeholder="Domain" name="domain">
+</div>
+<div class="ui input">
+  <input type="text" placeholder="Aliases" name="aliases">
+</div>
+<div class="ui segment">
+<div class="ui buttons">
+  <button class="ui teal button" type="submit"><i class="icon check"></i>Comfirm</button>
+  <a href="/orgas" class="ui button"><i class="icon times"></i>Cancel</a>
+</div>
+</form>
+</div>
+</div>
+{{> footer}}
