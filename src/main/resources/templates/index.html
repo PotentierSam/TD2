@@ -11,38 +11,62 @@
 </div>
 <div class="ui segment">
 	<a href="/orga/new" class="ui teal button">
-	<i class="ui plus icon"></i> Ajouter une organisation...
-</a>
-<div class="ui icon input">
-  <input type="text" placeholder="Search...">
-  <i class="search icon"></i>
-</div>
-  <table class="ui table">
-  <thead>
-    <tr><th>Id</th>
-    <th>Name</th>
-    <th>Domain</th>
-    <th>Aliases</th>
-    <th></th>
-  </tr></thead>
-  <tbody>
+		<i class="ui plus icon"></i> Ajouter une organisation...
+	</a>
+	<div class="ui icon input">
+  		<input type="text" placeholder="Search...">
+  		<i class="search icon"></i>
+	</div>
+  	<table class="ui table">
+ 		<thead>
+    		<tr>
+    		<th>Id</th>
+    		<th>Name</th>
+    		<th>Domain</th>
+    		<th>Aliases</th>
+    		<th></th>
+  			</tr>
+  		</thead>
+  	<tbody>
   	{{#orgas}}
     <tr>
-      <td data-label="Id">{{id}}</td>
-      <td data-label="Name">{{name}}</td>
-      <td data-label="Domain">{{#domain}}{{.}}{{/domain}}</td>
-      <td data-label="Aliases">{{#aliases}}{{.}}{{/aliases}}</td>
-      <td><a href="/orgas/delete/{{id}}"  class="circular ui red icon button">
-  		<i class="icon recycle"></i>
-	</a><a href="/orgas/edit/{{id}}"  class="circular ui icon button">
+		<td data-label="Id">{{id}}</td>
+		<td data-label="Name">{{name}}</td>
+		<td data-label="Domain">{{#domain}}{{.}}{{/domain}}</td>
+      	<td data-label="Aliases">{{#aliases}}{{.}}{{/aliases}}</td>
+      	<td>
+      	<a href="/orgas/edit/{{id}}"  class="circular ui icon button">
   		<i class="icon edit"></i>
-	</a></td>
+		</a>
+      	<a href="/orga/delete/{{id}}"  class="circular ui red icon button">
+  		<i class="icon recycle"></i>
+		</a>
+	   	</td>
     </tr>
     {{/orgas}}
-  </tbody>
-</table>
+  	</tbody>
+	</table>
 </div>
-
-<script>
-</script>
+{{#orgad}}
+<div class="ui negative message">
+  <i class="close icon"></i>
+  <div class="header">
+    Voulez vous vraiment supprimer {{name}},{{aliases}} ! <br><br>
+  </div>
+  	<div class="ui buttons">
+  		<a href="/orgas/delete/{{id}}" class="ui red button"><i class="icon check"></i>Confirm</a>
+  		<a href="/orgas" class="ui button"><i class="icon times"></i>Cancel</a>
+	</div>
+</div>
+{{/orgad}}
 {{> footer}}
+<script>
+$('.message .close')
+.on('click', function() {
+  $(this)
+    .closest('.message')
+    .transition('fade')
+  ;
+})
+;
+</script>

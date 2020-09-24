@@ -1,31 +1,44 @@
 {{> header}}
 <br>
 <div class="ui icon message">
-  <i class="envelope icon"></i>
-  <div class="content">
-    <div class="header">
-      Edition d'une organisation en cours
-    </div>
-    <p>Les slam sont les meilleurs</p>
-  </div>
+  	<i class="envelope icon"></i>
+  	<div class="content">
+    	<div class="header">
+      		Edition d'une organisation en cours
+    	</div>
+    	<p>Les slam sont les meilleurs</p>
+  	</div>
 </div>
 <div class="ui segment">
-<form method="post" action="/orga/edit">
-<div class="ui input">
-  <input type="text" placeholder="Name" name="name" required>
-</div>
-<div class="ui input">
-  <input type="text" placeholder="Domain" name="domain">
-</div>
-<div class="ui input">
-  <input type="text" placeholder="Aliases" name="aliases">
-</div>
-<div class="ui segment">
-<div class="ui buttons">
-  <button class="ui teal button" type="submit"><i class="icon check"></i>Comfirm</button>
-  <a href="/orgas" class="ui button"><i class="icon times"></i>Cancel</a>
-</div>
-</form>
-</div>
+	{{#orga}}
+	<form method="post" action="/orga/edit/{{id}}">
+		<div class="ui right labeled left icon input">
+  			<i class="edit icon"></i>
+  			<input type="text" placeholder="Name" value="{{name}}" name="name" required>
+  			<a class="ui tag label">
+    			{{name}}
+  			</a>
+		</div>
+		<div class="ui right labeled left icon input">
+  			<i class="edit icon"></i>
+  			<input type="text" placeholder="Domain" value="{{domain}}" name="domain">
+  			<a class="ui tag label">
+    			{{domain}}
+  			</a>
+		</div>
+		<div class="ui right labeled left icon input">
+  			<i class="edit icon"></i>
+  			<input type="text" placeholder="Aliases" value="{{aliases}}" name="aliases">
+  			<a class="ui tag label">
+    			{{aliases}}
+  			</a>
+		</div>
+		<div class="ui segment">
+			<div class="ui buttons">
+  			<button class="ui teal button" type="submit"><i class="icon check"></i>Confirm</button>
+  			<a href="/orgas" class="ui button"><i class="icon times"></i>Cancel</a>
+		</div>
+	</form>
+	{{/orga}}
 </div>
 {{> footer}}

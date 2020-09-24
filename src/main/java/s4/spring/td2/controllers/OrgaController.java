@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import s4.spring.td2.models.Organization;
@@ -55,6 +56,13 @@ public class OrgaController {
 		return "Organisation non trouvé";
 	}
 	
+	@RequestMapping("orga/delete/{id}")
+	public @ResponseBody RedirectView deletingOrga(@PathVariable int id,RedirectAttributes attrs) {
+		Optional<Organization> opt=orgaRepo.findById(id); 
+		attrs.addFlashAttribute("orgad", opt.get());
+		return new RedirectView("/orgas");
+	}
+	
 	@RequestMapping("orgas/delete/{id}")
 	public @ResponseBody RedirectView deleteOrga(@PathVariable int id) {
 		Optional<Organization> opt=orgaRepo.findById(id); 
@@ -67,5 +75,15 @@ public class OrgaController {
 		Optional<Organization> opt=orgaRepo.findById(id); 
 		model.put("orga", opt.get());
 		return "editorga";
+	}
+	
+	@RequestMapping("orga/edit/{id}")
+	public RedirectView editingOrga(@PathVariable int id,@RequestParam String name,@RequestParam String domain,@RequestParam String aliases) {
+		Optional<Organization> opt=orgaRepo.findById(id);
+		opt.get().setName(name);
+		opt.get().setDomain(domain);
+		opt.get().setAliases(aliases);
+		orgaRepo.saveAndFlush(opt.get());
+		return new RedirectView("/orgas");
 	}
 }
